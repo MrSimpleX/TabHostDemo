@@ -17,7 +17,7 @@ public interface OnTabSelectListener {
     void onTabSelect(int position);
 
     /**
-     * Tab释放状态
+     * Tab再次点击
      *
      * @param position
      */
