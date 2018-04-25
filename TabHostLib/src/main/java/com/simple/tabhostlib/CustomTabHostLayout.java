@@ -161,7 +161,7 @@ public class CustomTabHostLayout extends LinearLayout {
 		}
 
 		public int getCurrentTab() {
-				return mLastTab;
+				return mCurrentTab;
 		}
 
 		private void updateTabSelection(int position) {
