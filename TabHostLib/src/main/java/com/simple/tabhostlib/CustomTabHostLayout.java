@@ -160,6 +160,10 @@ public class CustomTabHostLayout extends LinearLayout {
 				}
 		}
 
+		public int getCurrentTab() {
+				return mLastTab;
+		}
+
 		private void updateTabSelection(int position) {
 				if (null == mAdapter) {
 						throw new RuntimeException("TabHostAdapter could not be NULL");

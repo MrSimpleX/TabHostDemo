@@ -16,7 +16,7 @@ import java.util.List;
  * @version V1.0
  * @Title: TabHostDemo
  * @Package com.aidai.tabhostlib
- * @Description: (用一句话描述该文件做什么)
+ * @Description: 默认的适配器
  * @date 2018/1/22 14:09
  */
 public class DefaultTabAdapter extends BaseTabAdapter<BaseTabHostEntity> {
