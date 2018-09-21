@@ -197,10 +197,17 @@ public class CustomTabHostLayout extends LinearLayout {
 
 		public void setAdapter(BaseTabAdapter adapter) {
 				mAdapter = adapter;
+				mAdapter.setOnDataChangedListener(new BaseTabAdapter.OnDataChangedListener() {
+						@Override
+						public void onChanged() {
+								notifyDataSetChanged();
+						}
+				});
 				notifyDataSetChanged();
 		}
 
 		public void setOnTabSelectListener(OnTabSelectListener listener) {
 				this.mListener = listener;
 		}
+
 }

@@ -16,15 +16,7 @@ import java.util.List;
  */
 public abstract class BaseTabAdapter<T> {
 
-		private final DataSetObservable mDataSetObservable = new DataSetObservable();
-
-		public void registerDataSetObserver(DataSetObserver observer) {
-				mDataSetObservable.registerObserver(observer);
-		}
-
-		public void unregisterDataSetObserver(DataSetObserver observer) {
-				mDataSetObservable.unregisterObserver(observer);
-		}
+		private OnDataChangedListener mOnDataChangedListener;
 
 		private List<T> mHostDatas;
 
@@ -52,10 +44,22 @@ public abstract class BaseTabAdapter<T> {
 		/**
 		 * 更新选中的Item
 		 *
-		 * @param v 选中的ItemView
+		 * @param v        选中的ItemView
 		 * @param isSelect 是否选中
 		 * @param position 第几条数据
 		 */
 		public abstract void notifyData(View v, boolean isSelect, int position);
+
+		public interface OnDataChangedListener {
+				void onChanged();
+		}
+
+		public void setOnDataChangedListener(OnDataChangedListener listener) {
+				mOnDataChangedListener = listener;
+		}
+
+		public void notifyDataChanged() {
+				mOnDataChangedListener.onChanged();
+		}
 
 }
