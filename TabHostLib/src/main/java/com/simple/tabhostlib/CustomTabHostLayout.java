@@ -29,7 +29,7 @@ import java.util.List;
  */
 public class CustomTabHostLayout extends LinearLayout {
 
-		private List<BaseTabHostEntity> mTabHostList;
+		private ArrayList<Fragment> mFragments;
 		private LinearLayout mTabHostLayout;
 		private int mCurrentTab;
 		private int mLastTab;
@@ -61,13 +61,6 @@ public class CustomTabHostLayout extends LinearLayout {
 				addView(mTabHostLayout);
 		}
 
-		public void setTabData(List<BaseTabHostEntity> tabHosList) {
-				if (tabHosList == null || tabHosList.size() == 0) {
-						throw new IllegalStateException("TabEntitys can not be NULL or EMPTY !");
-				}
-				mTabHostList = tabHosList;
-		}
-
 		/**
 		 * 懒人专用方法
 		 *
@@ -79,27 +72,26 @@ public class CustomTabHostLayout extends LinearLayout {
 		public void setTabData(List<BaseTabHostEntity> tabEntitys, FragmentActivity fa, int containerViewId, ArrayList<Fragment> fragments) {
 				mFragmentChangeManager = new FragmentChangeManager(fa.getSupportFragmentManager(), containerViewId, fragments);
 				DefaultTabAdapter adapter = new DefaultTabAdapter(tabEntitys, mContext);
-				setTabData(tabEntitys);
+				mFragments = fragments;
 				setAdapter(adapter);
 		}
 
 		/**
 		 * 关联数据支持同时切换fragments
 		 *
-		 * @param tabEntitys
 		 * @param fa
 		 * @param containerViewId
 		 * @param fragments
 		 */
-		public void setTabData(List<BaseTabHostEntity> tabEntitys, FragmentActivity fa, int containerViewId, ArrayList<Fragment> fragments, BaseTabAdapter adapter) {
+		public void setTabData(FragmentActivity fa, int containerViewId, ArrayList<Fragment> fragments, BaseTabAdapter adapter) {
 				mFragmentChangeManager = new FragmentChangeManager(fa.getSupportFragmentManager(), containerViewId, fragments);
-				setTabData(tabEntitys);
+				mFragments = fragments;
 				setAdapter(adapter);
 		}
 
 		private void notifyDataSetChanged() {
 				mTabHostLayout.removeAllViews();
-				this.mTabCount = mTabHostList.size();
+				this.mTabCount = mFragments.size();
 				if (null == mAdapter) {
 						throw new RuntimeException("TabHostAdapter could not be NULL");
 				}
